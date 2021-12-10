@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="test_drill">
+    <link name="base_test">
+
+    </link>
+    
+    <link name = "trigger">
+      <pose>.017 0.01 0 0 0 0.0</pose>
+      <visual name="trigger">
+        <geometry>
+          <box>
+            <size>0.06 0.06 0.03</size>
+          </box>
+        </geometry><!--
+        <material>
+          <diffuse>0 0.7 0 1</diffuse>
+        </material>-->
+      </visual>
+    </link>
+
+    <link name ="shaft">
+      <pose>0.027 -.0525 0 0 0 0.0</pose>
+      <visual name="shaft">
+        <geometry>
+          <box>
+            <size>0.04 0.065 0.03</size>
+          </box>
+        </geometry>
+        <!--
+        <material>
+          <diffuse>0.7 0 0 1</diffuse>
+        </material>-->
+      </visual>
+    </link>
+
+    <link name ="drill_base">
+      <pose>0 -.1 0 0 0 0.0</pose>
+      <visual name="base">
+        <geometry>
+          <box>
+            <size>0.1 0.03 0.04</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name = "motor">
+      <pose>0 .045 0 0 1.570796 0.0</pose>
+      <visual name="motor">
+
+        <geometry>
+          <cylinder>
+            <radius>0.0225</radius>
+            <length>0.17</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="end">
+      <pose>-.085 .045 0 0 0 0</pose>
+      <visual name="end">
+        <geometry>
+          <sphere>
+            <radius>.02</radius>
+          </sphere>
+        </geometry>
+      </visual>  
+    </link>
+
+    <joint name="j0" type="fixed">
+      <parent>base_test</parent>
+      <child>trigger</child>
+    </joint>
+    <joint name="j1" type="fixed">
+      <parent>base_test</parent>
+      <child>shaft</child>
+    </joint>
+    <joint name="j2" type="fixed">
+
+      <parent>base_test</parent>
+      <child>drill_base</child>
+      </joint>
+    <joint name="j3" type="fixed">
+
+      <parent>base_test</parent>
+      <child>motor</child>
+    </joint>
+    <joint name="j4" type="fixed">
+      <parent>base_test</parent>
+      <child>end</child>
+    </joint>
+  </model>
+</sdf>

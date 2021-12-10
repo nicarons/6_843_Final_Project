@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="drill">
+    <link name="mesh_drill">
+      <!--
+      <inertial>
+        <mass>0.603000</mass>
+        <inertia>
+          <ixx>0.002009</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000633</iyy>
+          <iyz>0</iyz>
+          <izz>0.002302</izz>
+        </inertia>
+      </inertial>-->
+
+      <visual name="mesh">
+        <pose>0 0 0 0 0 0.0</pose>
+        <geometry>
+          <mesh>
+            <uri>textured.obj</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <self_collide>0</self_collide>
+
+    </link>    
+    <frame name="mass_frame">
+      <pose relative_to="mesh_drill"/>
+    </frame>
+    
+    <link name = "trigger">
+      <mass>.1</mass>
+      <self_collide>0</self_collide>
+
+      <pose>.017 0.01 0 0 0 0.0</pose>
+      <collision name="col_trigger">
+        <pose relative_to="trigger"/>
+        <geometry>
+          <box>
+            <size>0.06 0.06 0.03</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <frame name="trigger_frame">
+      <pose relative_to="trigger"/>
+    </frame>
+
+    <link name ="shaft">
+      <mass>.2</mass>
+      <self_collide>0</self_collide>
+
+      <pose>0.027 -.0525 0 0 0 0.0</pose>
+      <collision name="col_shaft">
+        <geometry>
+          <box>
+            <size>0.04 0.065 0.03</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <frame name="shaft_frame">
+      <pose relative_to="shaft"/>
+    </frame>
+
+    <link name ="drill_base">
+      <mass>.8</mass>
+      <self_collide>0</self_collide>
+
+      <pose>0 -.1 0 0 0 0.0</pose>
+      <collision name="col_base">
+        <geometry>
+          <box>
+            <size>0.1 0.03 0.04</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <frame name="drill_base_frame">
+      <pose relative_to="drill_base"/>
+    </frame>
+
+    <link name = "motor">
+      <mass>2</mass>
+      <self_collide>0</self_collide>
+
+      <pose>0 .045 0 0 1.570796 0.0</pose>
+      <collision name="col_motor">
+
+        <geometry>
+          <cylinder>
+            <radius>0.0225</radius>
+            <length>0.17</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="end">
+      <mass>.1</mass>
+      <self_collide>0</self_collide>
+
+      <pose>-.085 .045 0 0 0 0</pose>
+      <collision name="col_end">
+        <geometry>
+          <sphere>
+            <radius>.02</radius>
+          </sphere>
+        </geometry>
+      </collision>  
+    </link>
+
+    <joint name="j0" type="fixed">
+      <parent>mesh_drill</parent>
+      <child>trigger</child>
+    </joint>
+    <joint name="j1" type="fixed">
+      <parent>mesh_drill</parent>
+      <child>shaft</child>
+    </joint>
+    <joint name="j2" type="fixed">
+
+      <parent>mesh_drill</parent>
+      <child>drill_base</child>
+      </joint>
+    <joint name="j3" type="fixed">
+
+      <parent>mesh_drill</parent>
+      <child>motor</child>
+    </joint>
+    <joint name="j4" type="fixed">
+      <parent>mesh_drill</parent>
+      <child>end</child>
+    </joint>
+  </model>
+</sdf>
